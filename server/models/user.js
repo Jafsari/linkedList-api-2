@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	username: { type: 'String', unique: true },
-	password: String
-	photo: String
+	password: String,
+	photo: String,
 	experience: [{	
 		jobTitle: String,
 		company: String,
@@ -19,10 +19,10 @@ const userSchema = new mongoose.Schema({
 		endDate: Date
 	}],
 	skills: [String],
-	createdAt: { timestamp: true },
-	updatedAt: { timestamp: true }
+},
+	{ timestamps: true }
 
-}); //the blueprint
+); //the blueprint
 
 const User = mongoose.model('User', userSchema); // instance with methods
 module.exports = User;

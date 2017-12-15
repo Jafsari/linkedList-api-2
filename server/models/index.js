@@ -13,8 +13,3 @@ mongoose
 	});
 
 	exports.User = require('./User');
-	//{ Item: Item }
-
-
-	exports.Company = require('./Company');
-	//{ Item: Item }
