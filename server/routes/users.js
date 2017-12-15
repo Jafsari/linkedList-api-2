@@ -18,14 +18,14 @@ router
   .route('/new')
     .get(usersHandler.renderNewUserForm);
 
-// router
-//   .route('/:id')
-//     .get(usersHandler.getItem)
-//     .patch(usersHandler.updateItem)
-//     .delete(usersHandler.deleteItem);
+router
+  .route('/:id')
+    .get(usersHandler.getUser)
+    .patch(usersHandler.updateUser)
+    .delete(usersHandler.deleteUser);
 
-// router
-//   .route('/:id')
-//     .get(usersHandler.editItemForm);
+router
+  .route('/:id')
+    .get(usersHandler.editUserForm);
 
 module.exports = router;
