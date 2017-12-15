@@ -2,12 +2,28 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 	email: String,
-	first_name: String,
-	last_name: String,
-	usersname: String,
+	firstName: String,
+	lastName: String,
+	username: { type: 'String', unique: true },
 	password: String
-	profilePhoto: String
+	photo: String
+	experience: [{	
+		jobTitle: String,
+		company: String,
+		startDate: Date,
+		endDate: Date
+	}],
+	education: [{
+		institution: String,
+		degree: String,
+		endDate: Date
+	}],
+	skills: [String],
+	createdAt: { timestamp: true },
+	updatedAt: { timestamp: true }
+
 }); //the blueprint
 
 const User = mongoose.model('User', userSchema); // instance with methods
 module.exports = User;
+
