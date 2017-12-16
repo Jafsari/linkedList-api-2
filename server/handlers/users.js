@@ -11,24 +11,24 @@ function getUsers(request, response, next) {
 }
 
 function getUser(request, response, next) {
-  return User.find().then(user =>{
-           return response.send('got user!');
+  return User.findById(request.params.id).then(user =>{
+           return response.status(200).json(formatResponse(user));
           }).catch(err => {
             console.error(err);
           });
 }
 
 function updateUser(request, response, next) {
- return User.find().then(user =>{
-           return response.send('got user updated!');
+ return User.findByIdAndUpdate(request.params.id, request.body, {new: true}).then(user =>{
+           return response.status(200).json(formatResponse(user));
           }).catch(err => {
             console.error(err);
           });
 }
 
 function deleteUser(request, response, next) {
-   return User.find().then(user =>{
-           return response.send('got user deleted!');
+   return User.findByIdAndRemove(request.params.id).then(user =>{
+           return response.status(200).json(formatResponse(user));
           }).catch(err => {
             console.error(err);
           });
@@ -42,28 +42,10 @@ function createUser(request, response, next) {
           });
 }
 
-function renderNewUserForm(request, response, next) {
-  return find().then(user =>{
-           return response.send('got new user form!');
-          }).catch(err => {
-            console.error(err);
-          });
-}
-
-function editUserForm(request, response, next) {
-  return User.find().then(user =>{
-           return response.send('got user edit page!');
-          }).catch(err => {
-            console.error(err);
-          });
-}
-
 module.exports = {
   getUsers,
   getUser,
   createUser,
   updateUser,
-  deleteUser,
-  renderNewUserForm,
-  editUserForm
+  deleteUser, 
 };

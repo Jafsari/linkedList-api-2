@@ -14,9 +14,6 @@ router
     .get(usersHandler.getUsers)
     .post(usersHandler.createUser);
     
-router
-  .route('/new')
-    .get(usersHandler.renderNewUserForm);
 
 router
   .route('/:id')
@@ -24,8 +21,5 @@ router
     .patch(usersHandler.updateUser)
     .delete(usersHandler.deleteUser);
 
-router
-  .route('/:id')
-    .get(usersHandler.editUserForm);
 
 module.exports = router;
