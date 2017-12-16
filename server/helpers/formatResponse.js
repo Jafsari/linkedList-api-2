@@ -2,4 +2,4 @@ function formatResponse(stuff) {
   return { data: stuff };
 }
 
-module.exports = { formatResponse };
+module.exports = formatResponse;

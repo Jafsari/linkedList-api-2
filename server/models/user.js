@@ -4,21 +4,12 @@ const userSchema = new mongoose.Schema({
 	email: String,
 	firstName: String,
 	lastName: String,
-	username: { type: 'String', unique: true },
+	username: String,
 	password: String,
 	photo: String,
-	experience: [{	
-		jobTitle: String,
-		company: String,
-		startDate: Date,
-		endDate: Date
-	}],
-	education: [{
-		institution: String,
-		degree: String,
-		endDate: Date
-	}],
-	skills: [String],
+	experience: [],
+	education: [],
+	skills: [],
 },
 	{ timestamps: true }
 
