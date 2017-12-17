@@ -8,5 +8,6 @@ const companySchema = new mongoose.Schema({
 	profilePhoto: String
 }); //the blueprint
 
+
 const Company = mongoose.model('Company', companySchema); // instance with methods
 module.exports = Company;

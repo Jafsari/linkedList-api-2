@@ -12,4 +12,5 @@ mongoose
 		console.error(err);
 	});
 
-	exports.User = require('./User');
+exports.User = require('./user'); // ??????it needs to be ./user
+exports.Company = require('./company') //check it here too
