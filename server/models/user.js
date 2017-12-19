@@ -30,24 +30,20 @@ const userSchema = new mongoose.Schema({
 },
 	{ timestamps: true }
 
-); //the blueprint
+); //the blueprinthttp://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/#
 
 userSchema.post('save', function(next){
   const user = this;
   return Company.findByIdAndUpdate(user.currentCompany, { 
     $addToSet: { employees: user._id }
-
 }).then(() => next())});
 
 userSchema.post('remove', function(next) {
-  // remove from posting user's list of stories
   const user = this;
-  Company.findByIdAndUpdate(user.currentCompany).then(company => {
-  company.employees.remove(user);
-  company.save(function(company){
-    return next() 
-  });   
-});
+  return Company.findByIdAndUpdate(user.currentCompany, {
+    $pull: { employees: user._id }
+}).then(() => next())});
+
 
 const User = mongoose.model('User', userSchema); // instance with methods
 module.exports = User;
