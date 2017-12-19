@@ -12,13 +12,13 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        //required: true
     },
 	photo: String,
 	experience: [],
 	education: [],
 	skills: [],
-},
+    },
 	{ timestamps: true }
 
 ); //the blueprint
