@@ -42,9 +42,12 @@ userSchema.post('save', function(next){
 userSchema.post('remove', function(next) {
   // remove from posting user's list of stories
   const user = this;
-  Company.findByIdAndUpdate(user.currentCompany, { 
-  	$pull: { employees: user._id }
-}).then(() => next())});
+  Company.findByIdAndUpdate(user.currentCompany).then(company => {
+  company.employees.remove(user);
+  company.save(function(company){
+    return next() 
+  });   
+});
 
 const User = mongoose.model('User', userSchema); // instance with methods
 module.exports = User;
