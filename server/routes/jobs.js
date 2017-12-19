@@ -6,19 +6,15 @@ const router = express.Router({ mergeParams: true });
 // globals
 const { jobsHandler } = require('../handlers');
 
-
-
 router
   .route('')
     .get(jobsHandler.getJobs)
     .post(jobsHandler.createJob);
     
-
 router
-  .route('/:id')
+  .route('/:username')
     .get(jobsHandler.getJob)
     .patch(jobsHandler.updateJob)
     .delete(jobsHandler.deleteJob);
-
 
 module.exports = router;

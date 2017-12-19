@@ -9,7 +9,7 @@ const jobSchema = new mongoose.Schema({
        type: mongoose.Schema.Types.ObjectId,
        // but it will refer to the Owner model 
        // (the first parameter to the mongoose.model method) ????????????
-       ref: 'company'
+       ref: 'Company'
 	}
 },
    { timestamps: true }

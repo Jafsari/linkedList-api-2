@@ -1,5 +1,6 @@
 const express = require('express');
 // app imports
+console.log(require('../handlers'))
 const { usersHandler } = require('../handlers');
 // globals
 const router = express.Router();
@@ -9,12 +10,10 @@ router
     .get(usersHandler.getUsers)
     .post(usersHandler.createUser);
     
-
 router
   .route('/:id')
     .get(usersHandler.getUser)
     .patch(usersHandler.updateUser)
     .delete(usersHandler.deleteUser);
-
-
+    
 module.exports = router;

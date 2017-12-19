@@ -2,7 +2,7 @@ const { Company } = require('../models');
 const { formatResponse } = require('../helpers');
 
 function getCompanies(request, response, next) {
-  return Company.find().then(companies => {
+  return Company.find().populate('employees').exec().then(companies => {
             return response.status(200).json(formatResponse(companies));
           }).catch(err => {
             console.error(err);

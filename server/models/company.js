@@ -2,10 +2,18 @@ const mongoose = require('mongoose');
 
 const companySchema = new mongoose.Schema({
 	email: String,
-	company_name: String,
-	company_handle: String,
+	companyName: String,
+	companyHandle: {
+        type: String,
+        required: true,
+        unique: true
+    },
 	password: String,
-	profilePhoto: String,
+	logo: String,
+	employees: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	}],
 	jobs: [{
     // which consists of a bunch of ids 
     // (we will use mongoose to populate the entire job object, let's just store the _id for now)
@@ -14,6 +22,7 @@ const companySchema = new mongoose.Schema({
     ref: 'Job'
   }]
 });
+
 
 
 const Company = mongoose.model('Company', companySchema); // instance with methods
