@@ -35,6 +35,6 @@ app.use('/jobs', jobsRouter);
 
 
 app.listen(3000, () => {
-  console.log('Express Templating Server listening on port 3000');
+  console.log('Scooby Doo on port 3000, ahhhrooo!');
 });
 

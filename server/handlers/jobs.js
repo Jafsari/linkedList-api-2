@@ -27,11 +27,16 @@ function updateJob(request, response, next) {
 }
 
 function deleteJob(request, response, next) {
-   return Job.findByIdAndRemove(request.params.id).then(job =>{
+  const company = request.body.company;
+  const job = request.params.id;
+   return Company.findByIdAndUpdate(company, { $pull: { jobs: job } })
+    .then(() => {
+      Job.findByIdAndRemove(request.params.id);
+    }).then(() =>{
            return response.status(200).json(formatResponse(job));
-          }).catch(err => {
+    }).catch(err => {
             console.error(err);
-          });
+    });
 }
 
 function createJob(request, response, next) {
