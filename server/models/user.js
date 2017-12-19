@@ -13,13 +13,14 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        //required: true
     },
     currentCompany: {
     	type: mongoose.Schema.Types.ObjectId,
 		ref: 'Company'
     },
 	photo: String,
+
 	experience: [ { type: String }],
 	education: [{ 
 		institution: String,
