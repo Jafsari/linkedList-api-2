@@ -16,6 +16,5 @@ router
     .patch(companiesHandler.updateCompany)
     .delete(companiesHandler.deleteCompany);
 
-
 module.exports = router;
 

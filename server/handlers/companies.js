@@ -2,7 +2,7 @@ const { Company } = require('../models');
 const { formatResponse } = require('../helpers');
 
 function getCompanies(request, response, next) {
-  return Company.find().then(companies => {
+  return Company.find().populate('employees').exec().then(companies => {
             return response.status(200).json(formatResponse(companies));
           }).catch(err => {
             console.error(err);
@@ -10,7 +10,7 @@ function getCompanies(request, response, next) {
 }
 
 function getCompany(request, response, next) {
-  return Company.findById(request.params.id).then(company =>{
+  return Company.findById(request.params.id).populate('employees').exec().then(company =>{
            return response.status(200).json(formatResponse(company));
           }).catch(err => {
             console.error(err);
