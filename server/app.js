@@ -47,6 +47,6 @@ app.use("/jobs", jobsRouter);
 //app.use('/companies/:company_id/jobs', jobsRouter);
 
 app.listen(3001, () => {
-	console.log("Express Templating Server listening on port 1");
+	console.log("Express Templating Server listening on port 3001");
 });
 
