@@ -11,6 +11,20 @@ const app = express();
 
 // app config
 app.use(bodyParser.json({ type: "*/*" }));
+//allow CORS
+app.use((request, response, next) => {
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header(
+		"Access-Control-Allow-Headers",
+		"Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization"
+	);
+	response.header(
+		"Access-Control-Allow-Methods",
+		"POST,GET,PATCH,DELETE,OPTIONS"
+	);
+	response.header("Content-Type", "application/json");
+	next();
+});
 // we are using the express.static middleware and specifying a path for
 //static files to be found. __dirname is a variable that we can use to refer
 // to the directory name of the current module)
@@ -36,17 +50,3 @@ app.listen(3001, () => {
 	console.log("Express Templating Server listening on port 1");
 });
 
-//allow CORS
-app.use((request, response, next) => {
-	response.header("Access-Control-Allow-Origin", "*");
-	response.header(
-		"Access-Control-Allow-Headers",
-		"Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization"
-	);
-	response.header(
-		"Access-Control-Allow-Methods",
-		"POST,GET,PATCH,DELETE,OPTIONS"
-	);
-	response.header("Content-Type", "application/json");
-	next();
-});
