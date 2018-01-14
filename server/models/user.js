@@ -13,8 +13,10 @@ const userSchema = new mongoose.Schema(
       unique: true
     },
     password: {
+
       type: String,
       required: true
+
     },
     currentCompany: {
       type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +36,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 //the blueprinthttp://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/#
+
 
 userSchema.pre("save", function(next) {
   const user = this;
