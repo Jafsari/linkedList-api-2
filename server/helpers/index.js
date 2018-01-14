@@ -1,1 +1,1 @@
-exports.formatResponse = require('./formatResponse');
+exports.formatResponse = require("./formatResponse");

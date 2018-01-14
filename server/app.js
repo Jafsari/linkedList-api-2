@@ -1,10 +1,9 @@
 // npm packages
+require("dotenv").load();
 const bodyParser = require("body-parser");
 const express = require("express");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
-
-// app imports
 
 // globals
 const app = express();
@@ -47,6 +46,6 @@ app.use("/jobs", jobsRouter);
 //app.use('/companies/:company_id/jobs', jobsRouter);
 
 app.listen(3001, () => {
-	console.log("Express Templating Server listening on port 1");
+	console.log("Express Templating Server listening on port 3001");
 });
 
