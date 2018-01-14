@@ -5,8 +5,6 @@ const express = require("express");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 
-// app imports
-
 // globals
 const app = express();
 
