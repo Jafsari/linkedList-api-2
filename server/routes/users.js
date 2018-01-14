@@ -1,22 +1,23 @@
 const express = require("express");
 // app imports
 const { usersHandler } = require("../handlers");
-const { ensureAuthenticated } = require("../helpers");
+const {
+	ensureAuthenticated,
+	ensureCorrectUser,
+	signin
+} = require("../helpers/auth");
 // globals
 const router = express.Router();
 
-router.get("/login");
-router.get("/signup");
+router.route("").get(ensureAuthenticated, usersHandler.getUsers);
 
-router
-	.route("")
-	.get(ensureAuthenticated, usersHandler.getUsers)
-	.post(usersHandler.createUser);
+router.route("/signin").post(signin);
+router.route("/signup").post(usersHandler.createUser);
 
 router
 	.route("/:id")
 	.get(usersHandler.getUser)
-	.patch(usersHandler.updateUser)
+	.patch(ensureCorrectUser, usersHandler.updateUser)
 	.delete(usersHandler.deleteUser);
 
 module.exports = router;

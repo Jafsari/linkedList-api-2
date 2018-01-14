@@ -1,4 +1,5 @@
 // npm packages
+require("dotenv").load();
 const bodyParser = require("body-parser");
 const express = require("express");
 const methodOverride = require("method-override");

@@ -51,7 +51,8 @@ function deleteUser(request, response, next) {
 function createUser(request, response, next) {
   return User.create(request.body)
     .then(user => {
-      return response.status(201).json(formatResponse(user));
+      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY);
+      return response.status(201).json(formatResponse(user), token);
     })
     .catch(err => {
       console.error(err);

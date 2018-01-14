@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema(
     skills: [{ type: String }]
   },
   { timestamps: true }
-); //the blueprinthttp://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/#
+);
+//the blueprinthttp://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/#
 
 userSchema.pre("save", function(next) {
   const user = this;
@@ -53,6 +54,7 @@ userSchema.methods.comparePassword = (candidatePassword, next) => {
     return next(null, isMatch);
   });
 };
+
 userSchema.post("save", function(next) {
   const user = this;
   return Company.findByIdAndUpdate(user.currentCompany, {
