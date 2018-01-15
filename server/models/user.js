@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     email: String,
     firstName: String,
     lastName: String,
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true
@@ -58,14 +58,14 @@ userSchema.methods.comparePassword = (candidatePassword, next) => {
   });
 };
 
-userSchema.post("save", function(next) {
+userSchema.post("save", function(doc, next) {
   const user = this;
   return Company.findByIdAndUpdate(user.currentCompany, {
     $addToSet: { employees: user._id }
   }).then(() => next());
 });
 
-userSchema.post("remove", function(next) {
+userSchema.post("remove", function(doc, next) {
   const user = this;
   return Company.findByIdAndUpdate(user.currentCompany, {
     $pull: { employees: user._id }

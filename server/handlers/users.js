@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { Company } = require("../models");
 const { formatResponse } = require("../helpers");
+const jwt = require("jsonwebtoken");
 
 function getUsers(request, response, next) {
   //db.items.find()
@@ -51,8 +52,12 @@ function deleteUser(request, response, next) {
 function createUser(request, response, next) {
   return User.create(request.body)
     .then(user => {
-      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY);
-      return response.status(201).json(formatResponse(user), token);
+      const token = jwt.sign(
+        { userId: user.id, userName: user.userName },
+        process.env.SECRET_KEY
+      );
+      console.log(token);
+      return response.status(201).json({ ...formatResponse(user), token });
     })
     .catch(err => {
       console.error(err);
