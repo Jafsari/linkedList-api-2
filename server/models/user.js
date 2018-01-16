@@ -13,10 +13,8 @@ const userSchema = new mongoose.Schema(
       unique: true
     },
     password: {
-
       type: String,
       required: true
-
     },
     currentCompany: {
       type: mongoose.Schema.Types.ObjectId,
@@ -37,7 +35,6 @@ const userSchema = new mongoose.Schema(
 );
 //the blueprinthttp://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/#
 
-
 userSchema.pre("save", function(next) {
   const user = this;
   if (!user.isModified("password")) {
@@ -49,7 +46,7 @@ userSchema.pre("save", function(next) {
   });
 });
 
-userSchema.methods.comparePassword = (candidatePassword, next) => {
+userSchema.methods.comparePassword = function(candidatePassword, next) {
   return bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) {
       return next(err);

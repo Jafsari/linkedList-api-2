@@ -3,27 +3,31 @@ const jwt = require("jsonwebtoken");
 const db = require("../models");
 
 exports.signin = function(req, res, next) {
-    db.User.findOne({ username: req.body.username })
+    db.User.findOne({ userName: req.body.userName })
         .then(function(user) {
             user.comparePassword(req.body.password, function(err, isMatch) {
+                console.log(req.body.password);
                 if (isMatch) {
                     const token = jwt.sign(
-                        { userId: user.id },
+                        { userId: user.id, userName: user.userName },
                         process.env.SECRET_KEY
                     );
                     res.status(200).json({
                         userId: user.id,
-                        username: user.username,
+                        userName: user.userName,
                         profileImageUrl: user.profileImageUrl,
                         token
                     });
                 } else {
-                    res.status(400).json({ message: "Invalid Email/Password" });
+                    console.log(err);
+                    res
+                        .status(400)
+                        .json({ message: "Invalid Username/Password" });
                 }
             });
         })
         .catch(function(err) {
-            res.status(400).json({ message: "Invalid Email/Password" });
+            res.status(400).json({ message: "Another Invalid Email/Password" });
         });
 };
 
